@@ -1,6 +1,6 @@
 {
   "name": "astro-og-image",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "An astro integration to generate static Open Graph images, at build time",
   "type": "module",
   "types": "./dist/index.d.ts",
@@ -28,6 +28,6 @@
     "puppeteer": "^15.1.1"
   },
   "engines": {
-    "node": ">=16.0.0"
+    "node": ">=14.0.0"
   }
 }
