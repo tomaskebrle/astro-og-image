@@ -1,0 +1,33 @@
+{
+  "name": "astro-og-image",
+  "version": "1.0.0",
+  "description": "An astro integration to generate static Open Graph images, at build time",
+  "type": "module",
+  "types": "./dist/index.d.ts",
+  "author": "Tomáš Kebrle <contact@tomaskebrle.cz> (https://tomaskebrle.cz)",
+  "license": "MIT",
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc"
+  },
+  "keywords": [
+    "astro-component",
+    "open-graph",
+    "seo"
+  ],
+  "devDependencies": {
+    "astro": "^1.0.0-beta.57",
+    "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "puppeteer": "^15.1.1"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
