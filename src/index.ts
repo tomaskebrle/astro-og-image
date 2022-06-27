@@ -3,27 +3,23 @@ import puppeteer from "puppeteer";
 import { fileURLToPath } from "node:url";
 import type { AstroIntegration, RouteData } from "astro";
 
-/* interface Options {
-  config: {
-    path: string;
-  };
-} */
-
-export default function astroOGImage(options: {
+export default function astroOGImage({
+  config,
+}: {
   config: { path: string };
 }): AstroIntegration {
   return {
     name: "astro-og-image",
     hooks: {
       "astro:build:done": async ({ dir, routes }) => {
-        let path = options.config.path;
+        let path = config.path;
         // Filters all the routes that need OG image
         let filteredRoutes = routes.filter((route: RouteData) =>
           route?.pathname?.includes(path)
         );
 
         // Creates a directory for the images if it doesn't exist already
-        let directory = fileURLToPath(new URL(`./assets${path}`, dir));
+        let directory = fileURLToPath(new URL(`./assets/${path}`, dir));
         if (!fs.existsSync(directory)) {
           fs.mkdirSync(directory);
         }
