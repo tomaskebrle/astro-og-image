@@ -1,10 +1,17 @@
 {
   "name": "astro-og-image",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "An astro integration to generate static Open Graph images, at build time",
   "type": "module",
   "types": "./dist/index.d.ts",
   "author": "Tomáš Kebrle <contact@tomaskebrle.cz> (https://tomaskebrle.cz)",
+  "homepage": "https://github.com/Kendy205/astro-og-image",
+  "bugs": "https://github.com/Kendy205/astro-og-image/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Kendy205/astro-og-image.git",
+    "directory": "/"
+  },
   "license": "MIT",
   "exports": {
     ".": "./dist/index.js"
