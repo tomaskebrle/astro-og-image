@@ -1,6 +1,6 @@
 {
   "name": "astro-og-image",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "An astro integration to generate static Open Graph images, at build time",
   "type": "module",
   "types": "./dist/index.d.ts",
