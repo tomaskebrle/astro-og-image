@@ -27,10 +27,12 @@ export default function astroOGImage({
         const browser = await puppeteer.launch();
         for (const route of filteredRoutes) {
           // Gets the title
-          const data = fs.readFileSync(
-            route?.distURL?.pathname as any,
-            "utf-8"
-          ) as any;
+          const pathname = route?.distURL?.pathname;
+          // Skip URLs that have not been built (draft: true, etc.)
+          if (!pathname) {
+            continue;
+          }
+          const data = fs.readFileSync(pathname as any, "utf-8") as any;
           let title = await data.match(/<title[^>]*>([^<]+)<\/title>/)[1];
 
           // Get the html
