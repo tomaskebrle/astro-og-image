@@ -24,7 +24,9 @@ export default function astroOGImage({
           fs.mkdirSync(directory);
         }
 
-        const browser = await puppeteer.launch();
+        const browser = await puppeteer.launch({
+          args: ['--no-sandbox', '--disable-setuid-sandbox']
+        });
         for (const route of filteredRoutes) {
           // Gets the title
           const data = fs.readFileSync(
