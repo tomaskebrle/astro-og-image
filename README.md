@@ -11,20 +11,9 @@ npm i astro-og-image
 pnpm add astro-og-image
 yarn add astro-og-image
 ```
-
-Lastly you need to add the `--experimental-integrations` flag to your scripts in `package.json`
-
-```json
-"scripts": {
-  "dev": "astro dev --host --experimental-integrations",
-  "start": "astro dev --experimental-integrations",
-  "build": "astro build --experimental-integrations",
-  "preview": "astro preview --experimental-integrations"
-}
-```
  
 ## Config
-Now you will need to import the integration in astro config
+Now you will need to import the integration into your astro config
 
 ```typescript
 import {defineConfig} from "astro/config";
