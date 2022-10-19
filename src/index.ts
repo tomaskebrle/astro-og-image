@@ -15,7 +15,7 @@ export default function astroOGImage({
         let path = config.path;
         // Filters all the routes that need OG image
         let filteredRoutes = routes.filter((route: RouteData) =>
-          route?.pathname?.includes(path)
+          route?.component?.includes(path)
         );
 
         // Creates a directory for the images if it doesn't exist already
@@ -25,7 +25,7 @@ export default function astroOGImage({
         }
 
         const browser = await puppeteer.launch({
-          args: ['--no-sandbox', '--disable-setuid-sandbox']
+          args: ["--no-sandbox", "--disable-setuid-sandbox"],
         });
         for (const route of filteredRoutes) {
           // Gets the title
@@ -52,7 +52,9 @@ export default function astroOGImage({
           });
 
           await page.screenshot({
-            path: fileURLToPath(new URL(`./assets${route.pathname}.png`, dir)),
+            path: fileURLToPath(
+              new URL(`./assets/${pathname.split("/").at(-2)}.png`, dir)
+            ),
             encoding: "binary",
           });
         }
