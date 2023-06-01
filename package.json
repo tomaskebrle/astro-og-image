@@ -1,6 +1,6 @@
 {
   "name": "@cyberkoalastudios/og-image-generator",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "An Astro integration to generate static Open Graph images, at build time",
   "type": "module",
   "types": "./dist/index.d.ts",

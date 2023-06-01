@@ -144,8 +144,8 @@ export default defineConfig({
               path: "/articles",
               matches: [
                   {
-                      regex: new RegExp('/^\\/articles\\/?$/\n'), // This one if for searching html (rendered .md files)
-                      namePrefix: "articles"                      // This one is for prefixing images
+                      regex: new RegExp('(?<!\/)\\[^\/\.][^\.:]*$'), // This one if for searching html (rendered .md files)
+                      namePrefix: "articles"                         // This one is for prefixing images
                   },
                   // This can be array of objects with different regular expressions. Feel free to add more here
               ]
