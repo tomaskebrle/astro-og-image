@@ -1,3 +1,5 @@
+[![Node.js Package](https://github.com/CyberKoalaStudios/og-image-generator/actions/workflows/npm-publish.yml/badge.svg?event=deployment_status)](https://github.com/CyberKoalaStudios/og-image-generator/actions/workflows/npm-publish.yml)
+
 # :rocket: Astro Open Graph Image Generator
 An astro integration to generate static Open Graph images from Content Collections, at build time
 
