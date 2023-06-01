@@ -31,10 +31,10 @@
   ],
   "devDependencies": {
     "astro": "^2.4.3",
-    "typescript": "^4.7.4"
+    "typescript": "^5.0.0"
   },
   "dependencies": {
-    "puppeteer": "^15.5.0"
+    "puppeteer": "^20.5.0"
   },
   "engines": {
     "node": ">=16.0.0"
