@@ -1,15 +1,17 @@
 {
-  "name": "og-image-generator",
+  "name": "@cyberkoalastudios/og-image-generator",
   "version": "1.0.0",
   "description": "An astro integration to generate static Open Graph images, at build time",
   "type": "module",
   "types": "./dist/index.d.ts",
   "author": "cyberkoala <contact@cyberkoalastudios.com> (https://cyberkoalastudios.com)",
   "homepage": "hhttps://github.com/CyberKoalaStudios",
-  "bugs": "https://github.com/CyberKoalaStudios/og-image-generator/issues",
+  "bugs": {
+    "url": "https://github.com/CyberKoalaStudios/og-image-generator/issues"
+  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/CyberKoalaStudios/og-image-generator.git",
+    "url": "git+https://github.com/CyberKoalaStudios/og-image-generator.git",
     "directory": "/"
   },
   "license": "MIT",
@@ -36,5 +38,6 @@
   },
   "engines": {
     "node": ">=16.0.0"
-  }
+  },
+  "main": "index.js"
 }

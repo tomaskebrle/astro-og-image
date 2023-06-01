@@ -7,9 +7,9 @@ An astro integration to generate static Open Graph images, at build time
 You will need an astro site with a blog. And then you need to install [astro-og-image package](https://www.npmjs.com/package/astro-og-image).
 
 ```bash
-npm i astro-og-image
-pnpm add astro-og-image
-yarn add astro-og-image
+npm i @cyberkoalastudios/og-image-generator
+pnpm add @cyberkoalastudios/og-image-generator
+yarn add @cyberkoalastudios/og-image-generator
 ```
  
 ## Config
