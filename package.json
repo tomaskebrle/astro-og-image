@@ -1,6 +1,6 @@
 {
   "name": "@cyberkoalastudios/og-image-generator",
-  "version": "1.0.2",
+  "version": "1.0.6",
   "description": "An Astro integration to generate static Open Graph images, at build time",
   "type": "module",
   "types": "./dist/index.d.ts",
@@ -22,7 +22,8 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "publish": "publish --access public"
   },
   "keywords": [
     "astro-component",
@@ -31,9 +32,13 @@
   ],
   "devDependencies": {
     "astro": "^2.4.3",
-    "typescript": "^5.0.0"
+    "typescript": "^4.8.4"
   },
   "dependencies": {
+    "dayjs": "^1.11.7",
+    "glob": "^10.2.6",
+    "gray-matter": "^4.0.3",
+    "http-server": "^14.1.1",
     "puppeteer": "^20.5.0"
   },
   "engines": {

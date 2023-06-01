@@ -21,11 +21,16 @@ import OGImageGenerator from "@cyberkoalastudios/og-image-generator";
 export default defineConfig({
   integrations: [
       OGImageGenerator({
-      config: {
-        path: "/collection", // change this value to the folder where your posts are
-        // NOTE: index.md file will not get proccesed, so please avoid it
-      },
-    }),
+          config: {
+              path: "/articles",
+              matches: [
+                  {
+                      regex: new RegExp('/^\\/articles\\/?$/\n'),
+                      namePrefix: "articles"
+                  },
+              ]
+          }
+      }),
   ],
 });
 ```
