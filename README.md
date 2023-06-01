@@ -112,6 +112,8 @@ const {frontmatter, slug} = Astro.props;
     </article>
 </ContentLayoutArticle>
 ```
+_I recomennd that you use a fallback image for all the non posts pages, and in case something goes wrong._
+
 
 `ContentLayoutArticle.astro`:
 ```astro
@@ -178,26 +180,7 @@ The image will be created by screenshotting an HTML page. The integration will l
 
 ```
 
-Note that the `@title` and `@thumbnail` will then be replaced by the title of your post.
-
-
-And modify the BaseHead component meta tags.
-_I recomennd that you use a fallback image for all the non posts pages, and in case something goes wrong._
-
-```astro
----
-export interface Props {
-	title: string;
-	description: string;
-	slug: string;
-}
-const { title, description, slug, publishDate } = Astro.props;
----
-
-<meta property="og:image" content={slug !== undefined ? `/assets/your-posts-folder/${slug}.png` : `/assets/fallback-image.png`} />
-<meta property="twitter:image" content={slug !== undefined ? `/assets/your-posts-folder/${slug}.png` : `/assets/fallback-image.png`} />
-```
-
+Note that the `@title` and `@thumbnail` will then be replaced by the title and image.url of your post.
 
 ## Final steps
 
