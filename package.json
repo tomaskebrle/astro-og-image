@@ -13,7 +13,7 @@
     "type": "git",
     "url": "git+https://github.com/CyberKoalaStudios/og-image-generator.git",
     "directory": "/"
-  },
+  },1.
   "license": "MIT",
   "exports": {
     ".": "./dist/index.js"
