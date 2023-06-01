@@ -3,13 +3,13 @@ import puppeteer from "puppeteer";
 import { fileURLToPath } from "node:url";
 import type { AstroIntegration, RouteData } from "astro";
 
-export default function astroOGImage({
+export default function OGImageGenerator({
   config,
 }: {
   config: { path: string };
 }): AstroIntegration {
   return {
-    name: "astro-og-image",
+    name: "og-image-generator",
     hooks: {
       "astro:build:done": async ({ dir, routes }) => {
         let path = config.path;

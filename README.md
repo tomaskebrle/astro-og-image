@@ -1,4 +1,4 @@
-# :rocket: Astro Open Graph Image
+# :rocket: Astro Open Graph Image Generator
 An astro integration to generate static Open Graph images, at build time
 
 # Setup
@@ -22,7 +22,7 @@ export default defineConfig({
   integrations: [
     astroOGImage({
       config: {
-        path: "/posts", // change this value to the folder where your posts are
+        path: "/collection", // change this value to the folder where your posts are
         // NOTE: index.md file will not get proccesed, so please avoid it
       },
     }),
@@ -54,12 +54,10 @@ Note that the `@title` will then be replaced by the title of your post.
 
 ## Adding the Open Graph image property to your BaseHead
 
-First of all you will need to add the slug property to your markdown files something like this
-
 ```md
 ---
-title: My first
-publishDate: 28 Jun 2022
+title: Post or article title
+pubDate: 2023-05-31
 description: The very first post on my new blog
 slug: my-post // <-- NOTE: slug must be the same as file name
 ---
@@ -70,12 +68,12 @@ Then in your blogpost layout modify the BaseHead component to accept the slug as
 
 ```astro
 ---
-const { title, description, publishDate, slug } = content; // Destructure it here
+const { title, description, pubDate, slug } = Astro.props;
 ---
 
 <html lang={content.lang || 'en'}>
 	<head>
-		<BaseHead {title} {description} {slug} {publishDate} /> <!-- Pass it here -->
+		<BaseHead {title} {description} {slug} {pubDate} /> <!-- Pass it here -->
 ```
 
 And modify the BaseHead component meta tags.
