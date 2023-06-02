@@ -8,11 +8,11 @@ import {fileURLToPath} from "node:url";
 import fs from "fs";
 import puppeteer from "puppeteer";
 
-// export { generateOpenGraphImage } from './generateOpenGraphImage';
-// export { OGDynamicImageRoute } from './routing';
+export { generateOpenGraphImage } from './generateOpenGraphImage';
+export { OGDynamicImageRoute } from './routing';
 
 
-export default function OGImageGenerator({ config, } : { config: configType}): AstroIntegration {
+export function OGImageGenerator({ config, } : { config: configType}): AstroIntegration {
     return {
         name: "astro-og-image",
         hooks: {
