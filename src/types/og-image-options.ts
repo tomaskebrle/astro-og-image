@@ -21,6 +21,12 @@ export interface OGImageOptions {
          */
         size?: [width?: number, height?: number];
     };
+    /** Optional background image. Displayed as cover of the card. */
+    backgroundImage? : {
+        size?: [width?: number, height?: number];
+        /** Path to the bg image file, e.g. `'./src/bg.png'`  or `page.frontmatter.image?.url`*/
+        path: string;
+    };
     /**
      * Array of `[R, G, B]` colors to use in the background gradient,
      * e.g. `[[255, 0, 0], [0, 0, 255]]` (red to blue).

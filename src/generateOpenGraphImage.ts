@@ -1,9 +1,9 @@
 import { decodeHTMLStrict } from 'entities';
 
-import { CanvasKitPromise, fontManager, loadImage } from '../assetLoaders';
-import type {FontConfig} from '../types/font-config';
-import type {OGImageOptions} from '../types/og-image-options';
-import type {IllogicalSide, LogicalSide, RGBColor, XYWH} from "../types/for-html";
+import { CanvasKitPromise, fontManager, loadImage } from './assetLoaders';
+import type {FontConfig} from './types/font-config';
+import type {OGImageOptions} from './types/og-image-options';
+import type {IllogicalSide, LogicalSide, RGBColor, XYWH} from "./types/for-html";
 
 const [width, height] = [1200, 630];
 const edges: Record<IllogicalSide, XYWH> = {
@@ -43,6 +43,7 @@ export async function generateOpenGraphImage({
                                                  title,
                                                  description = '',
                                                  dir = 'ltr',
+                                                 backgroundImage,
                                                  bgGradient = [[0, 0, 0]],
                                                  border: borderConfig = {},
                                                  padding = 60,
@@ -94,6 +95,39 @@ export async function generateOpenGraphImage({
         )
     );
     canvas.drawRect(bgRect, bgPaint);
+
+    let bgHeight = 0;
+    // Draw bg image
+    if (backgroundImage){
+        const imgBuf = await loadImage(backgroundImage.path);
+        const img = CanvasKit.MakeImageFromEncoded(imgBuf);
+        if (img) {
+            const backgroundHeight = img.height();
+            const backgroundWidth = img.width();
+            const targetW = backgroundImage.size?.[0] ?? backgroundWidth;
+            const targetH = backgroundImage.size?.[1] ?? (targetW / backgroundWidth) * backgroundHeight;
+            const xRatio = targetW / backgroundWidth;
+            const yRatio = targetH / backgroundHeight;
+            bgHeight = targetH;
+
+            // Matrix transform to scale the bg to the desired size.
+            const imagePaint = new CanvasKit.Paint();
+            imagePaint.setImageFilter(
+                CanvasKit.ImageFilter.MakeMatrixTransform(
+                    CanvasKit.Matrix.scaled(xRatio, yRatio),
+                    { filter: CanvasKit.FilterMode.Linear },
+                    null
+                )
+            );
+
+            imagePaint.setAlphaf(0.2);
+
+            // imagePaint.setColorFilter() // blend
+            // imagePaint.setMaskFilter() //blur
+
+            canvas.drawImage(img, 0, 0, imagePaint);
+        }
+    }
 
     // Draw border.
     if (border.width) {
