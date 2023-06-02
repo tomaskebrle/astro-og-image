@@ -254,7 +254,7 @@ export interface Props {
 }
 
 const { title, description, pubDate, slug } = Astro.props;
-const ogFromSlug = slug !== undefined ? new URL(`/assets/articles-${slug}.png`, Astro.site) : new URL(`/social-image.png`, Astro.site)
+const ogFromSlug = slug !== undefined ? new URL(`/custom-open-graph/src/content/articles/${slug}.png`, Astro.site) : new URL(`/social-image.png`, Astro.site)
 
 const schema = JSON.stringify({
     "@context": "https://schema.org",
