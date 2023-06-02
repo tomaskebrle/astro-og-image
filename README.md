@@ -267,4 +267,7 @@ Note that the `@title` and `@thumbnail` will then be replaced by the title and i
 
 Great now you should be done!🎉 Deploy your site and test it out. Great site for testing this out is [Open Graph previewer](https://www.opengraph.xyz/).
 
+---
+Improvements:
 
+- [ ] Add generation from markdown via `gray-metter` `dayjs`

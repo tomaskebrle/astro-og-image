@@ -1,11 +1,11 @@
 {
   "name": "@cyberkoalastudios/og-image-generator",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "An Astro integration to generate static Open Graph images, at build time from Content Collections",
   "type": "module",
   "types": "./dist/index.d.ts",
   "author": "cyberkoala <contact@cyberkoalastudios.com> (https://cyberkoalastudios.com)",
-  "homepage": "hhttps://github.com/CyberKoalaStudios",
+  "homepage": "https://github.com/CyberKoalaStudios",
   "bugs": {
     "url": "https://github.com/CyberKoalaStudios/og-image-generator/issues"
   },
@@ -36,9 +36,7 @@
     "typescript": "^4.8.4"
   },
   "dependencies": {
-    "dayjs": "^1.11.7",
     "glob": "^10.2.6",
-    "gray-matter": "^4.0.3",
     "http-server": "^14.1.1",
     "puppeteer": "^20.5.0"
   },
