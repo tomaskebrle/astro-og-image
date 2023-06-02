@@ -1,6 +1,6 @@
 {
   "name": "@cyberkoalastudios/og-image-generator",
-  "version": "1.1.11",
+  "version": "1.2.2",
   "description": "An Astro integration to generate static Open Graph images, at build time from Content Collections",
   "type": "module",
   "types": "./dist/index.d.ts",
@@ -43,7 +43,8 @@
     "canvaskit-wasm": "^0.38.1",
     "entities": "^4.5.0",
     "glob": "^10.2.6",
-    "puppeteer": "^20.5.0"
+    "puppeteer": "^20.5.0",
+    "sharp": "^0.32.1"
   },
   "engines": {
     "node": ">=16.0.0"

@@ -39,6 +39,8 @@ export const {getStaticPaths, get} = OGDynamicImageRoute({
         },
         backgroundImage: {
             url: page.frontmatter.image?.url,
+            alpha: 0.2,
+            blurStrength: 3,
         },
         // There are a bunch more options you can use here!
         bgGradient: [[26, 26, 26], [24, 24, 24]],
@@ -192,7 +194,8 @@ export interface FontConfig {
 <div style="page-break-after: always;"></div>
 
 ---
-(Deprecated)
+# (Deprecated)
+
 # Setup
 ## Prerequisites
 

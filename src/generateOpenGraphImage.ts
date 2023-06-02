@@ -8,6 +8,7 @@ import * as https from "https";
 import fs from "fs";
 import axios from "axios";
 import {fileURLToPath} from "node:url";
+import sharp from "sharp";
 
 const [width, height] = [1200, 630];
 const edges: Record<IllogicalSide, XYWH> = {
@@ -106,34 +107,27 @@ export async function generateOpenGraphImage({
         // Download image
         console.log(backgroundImage.url);
         const imgBuf = await downloadImage(backgroundImage.url);
-        const img = CanvasKit.MakeImageFromEncoded(imgBuf);
+
+        const resizedImgBuffer = await sharp(imgBuf)
+            .resize({
+                width: width,
+                height: height,
+                fit: sharp.fit.cover,
+                position: sharp.strategy.entropy
+            }).toBuffer();
+
+
+        const img = CanvasKit.MakeImageFromEncoded(resizedImgBuffer);
         if (img) {
-            const backgroundHeight = img.height();
-            const backgroundWidth = img.width();
-
-            const targetW = width ?? backgroundWidth;
-            const targetH = height ?? (targetW / backgroundWidth) * backgroundHeight;
-
-            const xRatio = targetW / backgroundWidth;
-            const yRatio = targetH / backgroundHeight;
-            bgHeight = targetH;
-
-            const ratio = Math.min(xRatio, yRatio);
-
             // Matrix transform to scale the bg to the desired size.
             let imagePaint = new CanvasKit.Paint();
 
-            const transformFilter =       CanvasKit.ImageFilter.MakeMatrixTransform(
-                CanvasKit.Matrix.scaled(backgroundWidth*ratio, backgroundHeight*ratio),
-                { filter: CanvasKit.FilterMode.Linear },
-                null
-            );
             imagePaint.setImageFilter(
                 CanvasKit.ImageFilter.MakeBlur(
                     backgroundImage.blurStrength ?? 0,
                     backgroundImage.blurStrength ?? 0,
                     CanvasKit.TileMode.Repeat,
-                    transformFilter
+                    null
                 )
             );
             imagePaint.setAlphaf(backgroundImage.alpha ?? 1);
