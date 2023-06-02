@@ -3,7 +3,7 @@
 # :rocket: Astro Open Graph Image Generator
 An astro integration to generate static Open Graph images from Content Collections, at build time
 
-
+[![Example of generated image](https://i.ibb.co/vL2mVTz/articles-test.png)](https://cyberkoalastudios.com)
 
 # Setup
 ## Prerequisites
@@ -36,11 +36,11 @@ src
 Example of `post.md`:
 ```markdown
 ---
-title: Rate this package
+title: My test post
 author: LRN4
 description: "CyberKoala LLC"
 image:
-  url: "https://lrn4.ru/LRN4_mail-ldjson.png"
+  url: "https://avatars.githubusercontent.com/u/104198244?s=200&v=4.jpg"
   alt: "Image alt"
 pubDate: 2023-06-01
 tags: ["vr","education","tech"]
