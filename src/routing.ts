@@ -1,4 +1,6 @@
-import {APIRoute, GetStaticPaths} from "astro";
+import type { APIRoute, GetStaticPaths } from 'astro';
+import { generateOpenGraphImage } from './generators/generateOpenGraphImage';
+import type { OGImageOptions } from './types/og-image-options';
 
 const pathToSlug = (path: string): string => {
     path = path.replace(/^\/src\/pages\//, '');
@@ -13,28 +15,27 @@ function makeGetStaticPaths({
                                 getSlug = pathToSlug,
                             }: OGImageRouteConfig): GetStaticPaths {
     const slugs = Object.entries(pages).map((page) => getSlug(...page));
-    const paths = slugs.map((slug) => ({params: {[param]: slug}}));
+    const paths = slugs.map((slug) => ({ params: { [param]: slug } }));
     return function getStaticPaths() {
         return paths;
     };
 }
 
-function createOGImageEndpoint({getSlug = pathToSlug, ...opts}: OGImageRouteConfig): APIRoute {
-    return async function getOGImage({params}) {
+function createOGImageEndpoint({ getSlug = pathToSlug, ...opts }: OGImageRouteConfig): APIRoute {
+    return async function getOGImage({ params }) {
         const pageEntry = Object.entries(opts.pages).find(
             (page) => getSlug(...page) === params[opts.param]
         );
-        if (!pageEntry) return new Response('Page not found', {status: 404});
+        if (!pageEntry) return new Response('Page not found', { status: 404 });
         return {
-            body: "TODO",
-            // body: (await generateOpenGraphImage(
-            //     await opts.getImageOptions(...pageEntry)
-            // )) as unknown as string,
+            body: (await generateOpenGraphImage(
+                await opts.getImageOptions(...pageEntry)
+            )) as unknown as string,
         };
     };
 }
 
-export function OGImageRoute(opts: OGImageRouteConfig): {
+export function OGDynamicImageRoute(opts: OGImageRouteConfig): {
     getStaticPaths: GetStaticPaths;
     get: APIRoute;
 } {
@@ -43,7 +44,6 @@ export function OGImageRoute(opts: OGImageRouteConfig): {
         get: createOGImageEndpoint(opts),
     };
 }
-
 
 interface OGImageRouteConfig {
     pages: { [path: string]: any };
