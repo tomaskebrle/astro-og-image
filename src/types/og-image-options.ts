@@ -23,7 +23,6 @@ export interface OGImageOptions {
     };
     /** Optional background image. Displayed as cover of the card. */
     backgroundImage? : {
-        // size?: [width?: number, height?: number];
         /** Path to the bg image file, e.g. `'./src/bg.png'`  or `page.frontmatter.image?.url`*/
         url: string;
         blurStrength?: number;
