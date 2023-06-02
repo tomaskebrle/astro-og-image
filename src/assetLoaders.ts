@@ -1,7 +1,9 @@
-import type { FontMgr } from 'canvaskit-wasm';
+import type {FontMgr} from 'canvaskit-wasm';
 import init from 'canvaskit-wasm';
 import fs from 'fs/promises';
-import { createRequire } from 'module';
+import {createRequire} from 'module';
+import axios from "axios";
+
 const { resolve } = createRequire(import.meta.url);
 
 const debug = (...args: any[]) => console.debug('[astro-og-canvas]', ...args);
@@ -96,3 +98,8 @@ export const loadImage = async (path: string): Promise<Buffer> => {
     await images.loading;
     return image!;
 };
+
+export async function downloadImage(url: string) {
+    const response = await axios.get(url, { responseType: 'arraybuffer' });
+    return Buffer.from(response.data, "utf-8");
+}

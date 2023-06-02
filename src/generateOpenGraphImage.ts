@@ -1,9 +1,13 @@
 import { decodeHTMLStrict } from 'entities';
 
-import { CanvasKitPromise, fontManager, loadImage } from './assetLoaders';
+import {CanvasKitPromise, downloadImage, fontManager, loadImage} from './assetLoaders';
 import type {FontConfig} from './types/font-config';
 import type {OGImageOptions} from './types/og-image-options';
 import type {IllogicalSide, LogicalSide, RGBColor, XYWH} from "./types/for-html";
+import * as https from "https";
+import fs from "fs";
+import axios from "axios";
+import {fileURLToPath} from "node:url";
 
 const [width, height] = [1200, 630];
 const edges: Record<IllogicalSide, XYWH> = {
@@ -98,33 +102,41 @@ export async function generateOpenGraphImage({
 
     let bgHeight = 0;
     // Draw bg image
-    if (backgroundImage){
-        const imgBuf = await loadImage(backgroundImage.path);
+    if (backgroundImage?.url){
+        // Download image
+        console.log(backgroundImage.url);
+        const imgBuf = await downloadImage(backgroundImage.url);
         const img = CanvasKit.MakeImageFromEncoded(imgBuf);
         if (img) {
             const backgroundHeight = img.height();
             const backgroundWidth = img.width();
-            const targetW = backgroundImage.size?.[0] ?? backgroundWidth;
-            const targetH = backgroundImage.size?.[1] ?? (targetW / backgroundWidth) * backgroundHeight;
+
+            const targetW = width ?? backgroundWidth;
+            const targetH = height ?? (targetW / backgroundWidth) * backgroundHeight;
+
             const xRatio = targetW / backgroundWidth;
             const yRatio = targetH / backgroundHeight;
             bgHeight = targetH;
 
+            const ratio = Math.min(xRatio, yRatio);
+
             // Matrix transform to scale the bg to the desired size.
-            const imagePaint = new CanvasKit.Paint();
+            let imagePaint = new CanvasKit.Paint();
+
+            const transformFilter =       CanvasKit.ImageFilter.MakeMatrixTransform(
+                CanvasKit.Matrix.scaled(backgroundWidth*ratio, backgroundHeight*ratio),
+                { filter: CanvasKit.FilterMode.Linear },
+                null
+            );
             imagePaint.setImageFilter(
-                CanvasKit.ImageFilter.MakeMatrixTransform(
-                    CanvasKit.Matrix.scaled(xRatio, yRatio),
-                    { filter: CanvasKit.FilterMode.Linear },
-                    null
+                CanvasKit.ImageFilter.MakeBlur(
+                    backgroundImage.blurStrength ?? 0,
+                    backgroundImage.blurStrength ?? 0,
+                    CanvasKit.TileMode.Repeat,
+                    transformFilter
                 )
             );
-
-            imagePaint.setAlphaf(0.2);
-
-            // imagePaint.setColorFilter() // blend
-            // imagePaint.setMaskFilter() //blur
-
+            imagePaint.setAlphaf(backgroundImage.alpha ?? 1);
             canvas.drawImage(img, 0, 0, imagePaint);
         }
     }
