@@ -4,10 +4,6 @@ import {CanvasKitPromise, downloadImage, fontManager, loadImage} from './assetLo
 import type {FontConfig} from './types/font-config';
 import type {OGImageOptions} from './types/og-image-options';
 import type {IllogicalSide, LogicalSide, RGBColor, XYWH} from "./types/for-html";
-import * as https from "https";
-import fs from "fs";
-import axios from "axios";
-import {fileURLToPath} from "node:url";
 import sharp from "sharp";
 
 const [width, height] = [1200, 630];
