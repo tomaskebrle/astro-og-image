@@ -7,7 +7,7 @@ import {matchesConfigType} from "../types/matches-config-type";
 import {configType, imageSizeType} from "../types/config-type";
 import {matchedPathType} from "../types/matched-path-type";
 import {regexesType} from "../types/regexes-type";
-export default function OGImageGenerator({ config, } : { config: configType}): AstroIntegration {
+export function OGImageGenerator({ config, } : { config: configType}): AstroIntegration {
     return {
         name: "astro-og-image",
         hooks: {
