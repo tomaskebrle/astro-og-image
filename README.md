@@ -194,7 +194,8 @@ export interface FontConfig {
 <div style="page-break-after: always;"></div>
 
 ---
-# (Deprecated)
+# Deprecated from v. 1.2.0. 
+But you can read here useful template patterns
 
 # Setup
 ## Prerequisites
@@ -461,4 +462,4 @@ Great now you should be done!🎉 Deploy your site and test it out. Great site f
 ---
 Improvements:
 
-- [ ] Add generation from markdown via `gray-metter` `dayjs`
+- [X] Add generation from markdown via `gray-metter` `dayjs`
